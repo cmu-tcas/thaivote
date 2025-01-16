@@ -1,40 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const user = JSON.parse(localStorage.getItem('user'));
+// ฟังก์ชันสำหรับการโหลดข้อมูลผู้ใช้จาก localStorage
+window.onload = function() {
+    const username = localStorage.getItem("username"); // ดึง username จาก localStorage
+    const fname = localStorage.getItem("fname"); // ดึง fname จาก localStorage
+    const avatar = localStorage.getItem("avatar"); // ดึง avatar จาก localStorage
 
-    if (!user) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'กรุณาเข้าสู่ระบบก่อนใช้งาน'
-        }).then(() => {
-            window.location.href = './index.html'; // Redirect to login page
-        });
-        return;
+    // แสดงข้อมูลในหน้า vote.html
+    if (fname) {
+        document.getElementById("fname").innerText = fname; // แสดง fname
     }
+    if (username) {
+        document.getElementById("username-display").innerText = username; // แสดง username
+    }
+    if (avatar) {
+        document.getElementById("avatar").src = avatar; // แสดง avatar
+    } else {
+        document.getElementById("avatar").src = "default-avatar.png"; // รูปเริ่มต้นถ้าไม่มี avatar
+    }
+};
 
-    // Display user information
-    document.getElementById('fname').textContent = user.fname;
-    document.getElementById('username').textContent = user.username;
-    document.getElementById('avatar').src = user.avatar || 'default-avatar.png';
-});
-
+// ฟังก์ชันสำหรับการล็อกเอาท์
 function logout() {
-    Swal.fire({
-        title: 'คุณต้องการออกจากระบบหรือไม่?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'ออกจากระบบ',
-        cancelButtonText: 'ยกเลิก'
-    }).then(result => {
-        if (result.isConfirmed) {
-            localStorage.removeItem('user');
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'ออกจากระบบสำเร็จ'
-            }).then(() => {
-                window.location.href = './index.html'; // Redirect to login page
-            });
-        }
-    });
+    localStorage.removeItem("username"); // ลบ username ออกจาก localStorage
+    localStorage.removeItem("fname"); // ลบ fname ออกจาก localStorage
+    localStorage.removeItem("avatar"); // ลบ avatar ออกจาก localStorage
+    window.location.href = "index.html"; // เปลี่ยนไปหน้า index.html
 }
