@@ -4,13 +4,19 @@ window.onload = function() {
     const fname = localStorage.getItem("fname"); // ดึง fname จาก localStorage
     const avatar = localStorage.getItem("avatar"); // ดึง avatar จาก localStorage
 
-    // แสดงข้อมูลในหน้า vote.html
+    // อัปเดต fname ในทุกจุดที่มี class="fname"
     if (fname) {
-        document.getElementById("fname").innerText = fname; // แสดง fname
+        document.querySelectorAll(".fname").forEach(element => {
+            element.innerText = fname;
+        });
     }
+
+    // อัปเดต username
     if (username) {
         document.getElementById("username-display").innerText = username; // แสดง username
     }
+
+    // อัปเดต avatar
     if (avatar) {
         document.getElementById("avatar").src = avatar; // แสดง avatar
     } else {
