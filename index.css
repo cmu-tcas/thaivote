@@ -24,11 +24,12 @@ body {
     background-color: #159505!important;
 }
 
+
 .card {
-    position: fixed;
+    margin-top: 20px;
+    float: right;
     display: flex;
     flex-direction: column;
-    min-width: 0;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
