@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Error',
             text: 'กรุณาเข้าสู่ระบบก่อนใช้งาน'
         }).then(() => {
-            window.location.href = 'index.html'; // Redirect to login page
+            window.location.href = './index.html'; // Redirect to login page
         });
         return;
     }
@@ -33,7 +33,7 @@ function logout() {
                 title: 'Success',
                 text: 'ออกจากระบบสำเร็จ'
             }).then(() => {
-                window.location.href = 'index.html'; // Redirect to login page
+                window.location.href = './index.html'; // Redirect to login page
             });
         }
     });
