@@ -40,3 +40,7 @@ body {
     align-items: center;
     text-align: center;
 }
+
+.dropdown-menu {
+    margin-left: -60px;
+}
