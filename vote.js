@@ -4,23 +4,28 @@ window.onload = function() {
     const fname = localStorage.getItem("fname"); // ดึง fname จาก localStorage
     const avatar = localStorage.getItem("avatar"); // ดึง avatar จาก localStorage
 
-    // อัปเดต fname ในทุกจุดที่มี class="fname"
+    // อัปเดต fname ในส่วนที่ระบุ id="user-fname"
     if (fname) {
-        document.querySelectorAll(".fname").forEach(element => {
-            element.innerText = fname;
-        });
+        const fnameElement = document.getElementById("user-fname");
+        const fnameDisplayElement = document.getElementById("user-fname-display");
+
+        if (fnameElement) fnameElement.innerText = fname; // แสดง fname ใน dropdown
+        if (fnameDisplayElement) fnameDisplayElement.innerText = fname; // แสดง fname ใน card-text
     }
 
     // อัปเดต username
     if (username) {
-        document.getElementById("username-display").innerText = username; // แสดง username
+        const usernameElement = document.getElementById("username-display");
+        if (usernameElement) usernameElement.innerText = username;
     }
 
     // อัปเดต avatar
     if (avatar) {
-        document.getElementById("avatar").src = avatar; // แสดง avatar
+        const avatarElement = document.getElementById("avatar");
+        if (avatarElement) avatarElement.src = avatar;
     } else {
-        document.getElementById("avatar").src = "default-avatar.png"; // รูปเริ่มต้นถ้าไม่มี avatar
+        const avatarElement = document.getElementById("avatar");
+        if (avatarElement) avatarElement.src = "default-avatar.png"; // รูปเริ่มต้นถ้าไม่มี avatar
     }
 };
 
