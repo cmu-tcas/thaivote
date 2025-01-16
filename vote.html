@@ -61,5 +61,20 @@
     <script src="vote.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    // ค้นหา element ที่เกี่ยวข้อง
+    const header = document.querySelector('.box h3');
+    const menu = document.querySelector('.elec');
+
+    // เพิ่ม Event Listener สำหรับการคลิก
+    header.addEventListener('click', () => {
+      // Toggle การแสดงผลของเมนู
+      if (menu.style.display === 'none' || menu.style.display === '') {
+        menu.style.display = 'block'; // แสดงเมนู
+      } else {
+        menu.style.display = 'none'; // ซ่อนเมนู
+      }
+    });
+  </script>
   </body>
 </html>
