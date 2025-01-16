@@ -6,7 +6,7 @@
       "jwt": "example_jwt_token_1",
       "userInfo": {
         "fname": "นายวิเลิศ ภูริวัชระ",
-        "avatar": "https://via.placeholder.com/150",
+        "avatar": "logo.png",
         "username": "ipstudio"
       }
     },
@@ -16,7 +16,7 @@
       "jwt": "example_jwt_token_2",
       "userInfo": {
         "fname": "adminA",
-        "avatar": "https://via.placeholder.com/150",
+        "avatar": "logo.png",
         "username": "admin"
       }
     }
