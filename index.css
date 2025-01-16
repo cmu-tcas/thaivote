@@ -46,3 +46,8 @@ body {
         margin-left: -15px;
     }
 }
+
+#user-fname-display {
+    margin: 0;
+    font-weight: 700;
+}
