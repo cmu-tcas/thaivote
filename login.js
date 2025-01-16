@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/index', (req, res) => {
+app.post('/vote.html', (req, res) => {
   const { username, password } = req.body;
 
   // อ่านไฟล์ ect.json
