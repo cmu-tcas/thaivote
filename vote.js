@@ -1,30 +1,54 @@
-var jwt = localStorage.getItem("jwt");
-if (jwt == null) {
-  window.location.href = './login.html'
+// ตรวจสอบว่า jwt มีอยู่ใน localStorage หรือไม่
+const jwt = localStorage.getItem("jwt");
+if (!jwt) {
+  window.location.href = './login.html';
 }
 
-function loadUser() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "https://www.mecallapi.com/api/auth/user");
-  xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhttp.setRequestHeader("Authorization", "Bearer "+jwt);
-  xhttp.send();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4) {
-      const objects = JSON.parse(this.responseText);
-      if (objects["status"] == "ok") {
-        const user = objects["user"]
-        document.getElementById("fname").innerHTML = user["fname"];
-        document.getElementById("avatar").src = user["avatar"];
-        document.getElementById("username").innerHTML = user["username"];
+// โหลดข้อมูลผู้ใช้
+async function loadUser() {
+  try {
+    const response = await fetch("https://www.mecallapi.com/api/auth/user", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Authorization": `Bearer ${jwt}`
       }
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch user data");
     }
-  };
+
+    const data = await response.json();
+    if (data.status === "ok") {
+      const user = data.user;
+      document.getElementById("fname").innerHTML = user.fname;
+      document.getElementById("avatar").src = user.avatar;
+      document.getElementById("username").innerHTML = user.username;
+    } else {
+      // กรณีที่ JWT ไม่ถูกต้องหรือหมดอายุ
+      localStorage.removeItem("jwt");
+      window.location.href = './login.html';
+    }
+  } catch (error) {
+    console.error("Error loading user:", error);
+    // กรณีมีปัญหาในการเชื่อมต่อกับ API
+    Swal.fire({
+      text: "Unable to load user information. Please try again later.",
+      icon: "error",
+      confirmButtonText: "OK"
+    }).then(() => {
+      localStorage.removeItem("jwt");
+      window.location.href = './login.html';
+    });
+  }
 }
 
-loadUser();
-
+// ฟังก์ชันสำหรับออกจากระบบ
 function logout() {
   localStorage.removeItem("jwt");
-  window.location.href = './login.html'
+  window.location.href = './login.html';
 }
+
+// เรียกใช้ฟังก์ชันโหลดข้อมูลผู้ใช้
+loadUser();
