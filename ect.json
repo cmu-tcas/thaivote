@@ -1,24 +1,4 @@
 {
-  "users": [
-    {
-      "username": "ipstudio",
-      "password": "1201060701440061462",
-      "jwt": "example_jwt_token_1",
-      "userInfo": {
-        "fname": "นายวิเลิศ ภูริวัชระ",
-        "avatar": "logo.png",
-        "username": "ipstudio"
-      }
-    },
-    {
-      "username": "admin",
-      "password": "12369874",
-      "jwt": "example_jwt_token_2",
-      "userInfo": {
-        "fname": "adminA",
-        "avatar": "logo.png",
-        "username": "admin"
-      }
-    }
-  ]
+    "username": "ipstudio",    
+    "password": "1201060701440061462"
 }
