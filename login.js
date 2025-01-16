@@ -1,106 +1,46 @@
-// var jwt = localStorage.getItem("jwt");
-// if (jwt != null) {
-//   window.location.href = 'vote.html'
-// }
+function login() {
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-// function login() {
-//   const username = document.getElementById("username").value;
-//   const password = document.getElementById("password").value;
-
-//   const xhttp = new XMLHttpRequest();
-//   xhttp.open("POST", "ect.json");
-//   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-//   xhttp.send(JSON.stringify({
-//     "username": username,
-//     "password": password
-//   }));
-//   xhttp.onreadystatechange = function () {
-//     if (this.readyState == 4) {
-//       const objects = JSON.parse(this.responseText);
-//       console.log(objects);
-//       if (objects['status'] == 'ok') {
-//         localStorage.setItem("jwt", objects['accessToken']);
-//         Swal.fire({
-//           text: objects['message'],
-//           icon: 'success',
-//           confirmButtonText: 'OK'
-//         }).then((result) => {
-//           if (result.isConfirmed) {
-//             window.location.href = './index.html';
-//           }
-//         });
-//       } else {
-//         Swal.fire({
-//           text: objects['message'],
-//           icon: 'error',
-//           confirmButtonText: 'OK'
-//         });
-//       }
-//     }
-//   };
-//   return false;
-// }
-async function login() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  try {
-    // ส่งข้อมูลไปที่ API เพื่อทำการ Login
-    const response = await fetch("https://thaivote.pages.dev/ect.json", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-        expiresIn: 60000,  // ตั้งเวลา expiration (ตัวอย่าง)
-      }),
-    });
-
-    // ตรวจสอบสถานะของ response
-    const data = await response.json();
-    console.log("Response data:", data);  // Debug ข้อมูลที่ได้รับ
-
-    if (response.ok) {
-      // ถ้าการตอบกลับเป็น 200 OK
-      if (data.status === "ok") {
-        // บันทึก JWT ลงใน LocalStorage
-        localStorage.setItem("jwt", data.accessToken);
-        console.log("JWT saved:", data.accessToken);  // Debug JWT ที่บันทึก
-
-        // แสดงข้อความสำเร็จ
+    if (!username || !password) {
         Swal.fire({
-          text: data.message,
-          icon: "success",
-          confirmButtonText: "OK"
-        }).then(() => {
-          window.location.href = "./vote.html"; // เปลี่ยนหน้าไปยัง vote.html
-          console.log("Redirecting to vote.html");  // Debug การเปลี่ยนหน้า
+            icon: 'error',
+            title: 'Error',
+            text: 'กรุณากรอกข้อมูลให้ครบถ้วน'
         });
-      } else {
-        // กรณีที่การตอบกลับเป็นสถานะ 'error'
-        Swal.fire({
-          text: data.message,
-          icon: "error",
-          confirmButtonText: "OK"
-        });
-      }
-    } else {
-      // กรณีที่ status ไม่ใช่ 200 OK
-      Swal.fire({
-        text: "Login failed. Please check your username and password.",
-        icon: "error",
-        confirmButtonText: "OK"
-      });
+        return false;
     }
-  } catch (error) {
-    // จัดการข้อผิดพลาดที่อาจเกิดขึ้นจากการเชื่อมต่อ
-    console.error("Error logging in:", error);
-    Swal.fire({
-      text: "Something went wrong. Please try again later.",
-      icon: "error",
-      confirmButtonText: "OK"
-    });
-  }
+
+    fetch('users.json')
+        .then(response => response.json())
+        .then(users => {
+            const user = users.find(user => user.username === username && user.password === password);
+            if (user) {
+                // Save user data in localStorage for future use
+                localStorage.setItem('user', JSON.stringify(user));
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'ล็อกอินสำเร็จ'
+                }).then(() => {
+                    window.location.href = 'vote.html'; // Redirect to the vote page
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง'
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching users:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'เกิดข้อผิดพลาด กรุณาลองอีกครั้ง'
+            });
+        });
+
+    return false; // Prevent form submission
 }
