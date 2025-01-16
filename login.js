@@ -21,7 +21,7 @@ async function login() {
         icon: "success",
         confirmButtonText: "OK"
       }).then(() => {
-        window.location.href = "./vote.html";
+        window.location.assign("vote.html"); // ใช้ assign() แทน
         console.log("Redirecting to vote.html"); // Debug การเปลี่ยนหน้า
       });
     } else {
@@ -40,6 +40,7 @@ async function login() {
     });
   }
 }
+
 
 // async function login() {
 //   const username = document.getElementById("username").value;
