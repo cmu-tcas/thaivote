@@ -5,6 +5,7 @@
 html,
 body {
   font-family: "Bai Jamjuree", serif;
+    user-select: none;
 }
 
 .navbar-collapse {
@@ -59,6 +60,8 @@ body {
     margin: 0;
     background: antiquewhite;
     border: 2px solid #cccccc;
+    cursor: pointer; /* เปลี่ยนเป็นรูปมือชี้เมื่อชี้ที่ h3 */
+    user-select: none; /* ป้องกันการเลือกข้อความ */
 }
 
 .box h3::after {
@@ -74,3 +77,16 @@ body {
     margin-top: 14px;
 /*     transform: rotateX(180deg); */
 }
+
+.elec {
+      display: none; /* ซ่อนเมนูโดยค่าเริ่มต้น */
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .box h3:hover {
+      color: #007bff; /* เปลี่ยนสีเมื่อชี้ */
+    }
