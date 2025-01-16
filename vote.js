@@ -5,7 +5,7 @@ if (jwt == null) {
 
 function loadUser() {
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "https://www.mecallapi.com/api/auth/user");
+  xhttp.open("GET", "user.json");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.setRequestHeader("Authorization", "Bearer "+jwt);
   xhttp.send();
