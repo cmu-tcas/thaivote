@@ -1,26 +1,12 @@
-{
-  "method": "GET",
-  "url": "user.json",
-  "bearerToken": "eyJhbGciOiJIUzI1NiIsInR5cC",
-  "responses": {
-    "200": {
-      "status": "ok",
-      "user": {
-        "id": 1,
-        "fname": "นายวิเลิศ",
-        "lname": "ภูริวัชระ",
+[
+    {
         "username": "ipstudio",
-        "email": "karn.yong@melivecode.com",
-        "avatar": "https://www.melivecode.com/users/1.png"
-      }
+        "password": "1201060701440061462",
+        "avatar": "logo.png"
     },
-    "403": {
-      "status": "forbidden",
-      "message": "Access Token Invalid"
-    },
-    "401": {
-      "status": "forbidden",
-      "message": "No Authorization Header"
+    {
+        "username": "admin",
+        "password": "12369874",
+        "avatar": "logo.png"
     }
-  }
-}
+]
