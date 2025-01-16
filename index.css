@@ -6,3 +6,20 @@ html,
 body {
   font-family: "Bai Jamjuree", serif;
 }
+
+.navbar-collapse {
+    flex-grow: 0!important;
+}
+
+.dropdown-toggle::after {
+    margin-left: .5em!important;
+    color: #fff!important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff!important;
+}
+
+.bg-mynav {
+    background-color: #159505!important;
+}
