@@ -1,4 +1,23 @@
 {
-    "username": "ipstudio",    
-    "password": "1201060701440061462"
+  "users": [
+    {
+      "username": "ipstudio",
+      "password": "1201060701440061462"
+    },
+    {
+      "username": "admin",
+      "password": "12369874"
+    }
+  ],
+  "responses": {
+    "success": {
+      "status": "ok",
+      "accessToken": "your_jwt_token_here",
+      "message": "Login successful!"
+    },
+    "error": {
+      "status": "error",
+      "message": "Invalid username or password!"
+    }
+  }
 }
