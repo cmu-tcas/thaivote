@@ -1,33 +1,33 @@
-const apiDetails = {
-  method: 'POST',
-  url: 'https://thaivote.pages.dev/ect.json',
-  body: {
-    username: 'ipstudio',
-    password: '1201060701440061462',
-    expiresIn: 60000 // expiresIn is optional
+{
+  "method": "POST",
+  "url": "https://thaivote.pages.dev/ect.json",
+  "body": {
+    "username": "ipstudio",
+    "password": "1201060701440061462",
+    "expiresIn": 60000
   },
-  responses: {
-    200: {
-      status: 'ok',
-      message: 'Logged in',
-      accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cC', // Token shortened for example
-      expiresIn: 60000,
-      user: {
-        id: 1,
-        fname: 'นายวิเลิศ',
-        lname: 'ภูริวัชระ',
-        username: 'ipstudio',
-        email: 'karn.yong@melivecode.com',
-        avatar: 'https://www.melivecode.com/users/1.png'
+  "responses": {
+    "200": {
+      "status": "ok",
+      "message": "Logged in",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cC",
+      "expiresIn": 60000,
+      "user": {
+        "id": 1,
+        "fname": "นายวิเลิศ",
+        "lname": "ภูริวัชระ",
+        "username": "ipstudio",
+        "email": "karn.yong@melivecode.com",
+        "avatar": "https://www.melivecode.com/users/1.png"
       }
     },
-    400: {
-      status: 'error',
-      message: 'Missing username and/or password'
+    "400": {
+      "status": "error",
+      "message": "Missing username and/or password"
     },
-    401: {
-      status: 'error',
-      message: 'Login failed'
+    "401": {
+      "status": "error",
+      "message": "Login failed"
     }
   }
-};
+}
