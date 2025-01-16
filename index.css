@@ -36,7 +36,7 @@ body {
     border-radius: .25rem;
     width: 20%;
     right: 20px;
-    height: 200px;
+    height: auto;
     align-items: center;
     text-align: center;
 }
