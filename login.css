@@ -14,3 +14,11 @@ body {
   max-width: 25rem;
   margin: auto;
 }
+
+a {
+    color: #00bc33;
+}
+
+a:hover {
+    color: #198754;
+}
