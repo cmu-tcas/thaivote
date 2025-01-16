@@ -1,42 +1,34 @@
-var jwt = localStorage.getItem("jwt");
-if (jwt != null) {
-  window.location.href = '/vote.html'
-}
+const express = require('express');
+const fs = require('fs');
+const app = express();
 
-function login() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+app.use(express.json());
 
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "ect.json");
-  xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhttp.send(JSON.stringify({
-    "username": username,
-    "password": password
-  }));
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4) {
-      const objects = JSON.parse(this.responseText);
-      console.log(objects);
-      if (objects['status'] == 'ok') {
-        localStorage.setItem("jwt", objects['accessToken']);
-        Swal.fire({
-          text: objects['message'],
-          icon: 'success',
-          confirmButtonText: 'OK'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.href = './index.html';
-          }
-        });
-      } else {
-        Swal.fire({
-          text: objects['message'],
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
-      }
+app.post('/index', (req, res) => {
+  const { username, password } = req.body;
+
+  // อ่านไฟล์ ect.json
+  fs.readFile('ect.json', 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).json({ status: 'error', message: 'Server error!' });
     }
-  };
-  return false;
-}
+
+    const jsonData = JSON.parse(data);
+    const user = jsonData.users.find(
+      (u) => u.username === username && u.password === password
+    );
+
+    if (user) {
+      // ตอบกลับเมื่อข้อมูลถูกต้อง
+      res.json(jsonData.responses.success);
+    } else {
+      // ตอบกลับเมื่อข้อมูลผิด
+      res.json(jsonData.responses.error);
+    }
+  });
+});
+
+// เริ่มเซิร์ฟเวอร์
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
