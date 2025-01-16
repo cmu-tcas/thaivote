@@ -1,7 +1,3 @@
-{
-    "username": "",    
-    "password": ""
-}
 const apiDetails = {
   method: 'POST',
   url: 'https://thaivote.pages.dev/ect.json',
