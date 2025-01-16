@@ -1,34 +1,38 @@
-const express = require('express');
-const fs = require('fs');
-const app = express();
+async function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-app.use(express.json());
+  try {
+    const response = await fetch("ect.json");
+    if (!response.ok) throw new Error("Failed to fetch user data");
 
-app.post('/vote.html', (req, res) => {
-  const { username, password } = req.body;
-
-  // อ่านไฟล์ ect.json
-  fs.readFile('ect.json', 'utf8', (err, data) => {
-    if (err) {
-      return res.status(500).json({ status: 'error', message: 'Server error!' });
-    }
-
-    const jsonData = JSON.parse(data);
-    const user = jsonData.users.find(
+    const data = await response.json();
+    const user = data.users.find(
       (u) => u.username === username && u.password === password
     );
 
     if (user) {
-      // ตอบกลับเมื่อข้อมูลถูกต้อง
-      res.json(jsonData.responses.success);
+      localStorage.setItem("jwt", user.jwt);
+      Swal.fire({
+        text: "Login successful!",
+        icon: "success",
+        confirmButtonText: "OK"
+      }).then(() => {
+        window.location.href = "./vote.html";
+      });
     } else {
-      // ตอบกลับเมื่อข้อมูลผิด
-      res.json(jsonData.responses.error);
+      Swal.fire({
+        text: "Invalid username or password!",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
     }
-  });
-});
-
-// เริ่มเซิร์ฟเวอร์
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+  } catch (error) {
+    console.error("Error logging in:", error);
+    Swal.fire({
+      text: "Something went wrong. Please try again later.",
+      icon: "error",
+      confirmButtonText: "OK"
+    });
+  }
+}
