@@ -1,13 +1,13 @@
 // ตรวจสอบว่า jwt มีอยู่ใน localStorage หรือไม่
 const jwt = localStorage.getItem("jwt");
 if (!jwt) {
-  window.location.href = './login.html';
+  window.location.href = 'index.html';
 }
 
 // โหลดข้อมูลผู้ใช้
 async function loadUser() {
   try {
-    const response = await fetch("https://www.mecallapi.com/api/auth/user", {
+    const response = await fetch("ect.json", {
       method: "GET",
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
@@ -28,7 +28,7 @@ async function loadUser() {
     } else {
       // กรณีที่ JWT ไม่ถูกต้องหรือหมดอายุ
       localStorage.removeItem("jwt");
-      window.location.href = './login.html';
+      window.location.href = 'index.html';
     }
   } catch (error) {
     console.error("Error loading user:", error);
@@ -39,7 +39,7 @@ async function loadUser() {
       confirmButtonText: "OK"
     }).then(() => {
       localStorage.removeItem("jwt");
-      window.location.href = './login.html';
+      window.location.href = 'index.html';
     });
   }
 }
@@ -47,7 +47,7 @@ async function loadUser() {
 // ฟังก์ชันสำหรับออกจากระบบ
 function logout() {
   localStorage.removeItem("jwt");
-  window.location.href = './login.html';
+  window.location.href = 'index.html';
 }
 
 // เรียกใช้ฟังก์ชันโหลดข้อมูลผู้ใช้
