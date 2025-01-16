@@ -31,8 +31,3 @@ const apiDetails = {
     }
   }
 };
-
-// Example of using this object
-console.log(apiDetails.method); // Output: POST
-console.log(apiDetails.url); // Output: 'https://www.melivecode.com/api/login'
-console.log(apiDetails.responses[200].message); // Output: 'Logged in'
