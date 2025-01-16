@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Display user information
-    document.getElementById('fname').textContent = user.username;
+    document.getElementById('fname').textContent = user.fname;
     document.getElementById('username').textContent = user.username;
     document.getElementById('avatar').src = user.avatar || 'default-avatar.png';
 });
