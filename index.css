@@ -110,3 +110,7 @@ img{user-select: none;}
 .elec-head-text-bottom {
     display: flex;
 }
+
+table, tr, td {
+    border: 1px solid;
+}
