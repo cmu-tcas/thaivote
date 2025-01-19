@@ -125,7 +125,7 @@
     });
   </script>
     
-    <script>
+<!--     <script>
         function submitCheckbox() {
             const ptp = document.getElementById("ptp");
             const ffp = document.getElementById("ffp");
@@ -141,6 +141,45 @@
                 alert(`PTP: ${ptpChecked ? 'Checked' : 'Unchecked'}\nFFP: ${ffpChecked ? 'Checked' : 'Unchecked'}`);
             } else {
                 console.error("Checkbox ไม่พบใน DOM");
+            }
+        }
+    </script> -->
+    
+
+    <script>
+        async function submitVote() {
+            // ดึงข้อมูลจาก HTML
+            const fname = document.getElementById("user-fname-display").textContent.trim();
+            const username = document.getElementById("username-display").textContent.trim();
+            const ptp = document.getElementById("ptp").checked;
+            const ffp = document.getElementById("ffp").checked;
+
+            const data = {
+                fname: fname,
+                username: username,
+                votePtp: ptp ? "Yes" : "No",
+                voteFfp: ffp ? "Yes" : "No"
+            };
+
+            // ส่งข้อมูลไปยัง Google Apps Script
+            const scriptURL = "https://script.google.com/macros/s/AKfycbwwIoi-MlItnJGFvujZbkKtK9EH4ElFOfpRWwbH1K9HIGsmKUJT2EBnvCHxOFOnB2_K/exec"; // แทนที่ด้วย URL จาก Apps Script
+            try {
+                const response = await fetch(scriptURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    alert("Vote submitted successfully!");
+                } else {
+                    alert("Failed to submit vote.");
+                }
+            } catch (error) {
+                console.error("Error submitting vote:", error);
+                alert("An error occurred while submitting the vote.");
             }
         }
     </script>
