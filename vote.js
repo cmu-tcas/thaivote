@@ -5,7 +5,13 @@
       const avatar = localStorage.getItem("avatar");
 
 // แสดงข้อมูลพื้นฐาน (fname, username, avatar)
-      if (fname) document.getElementById("user-fname-display").innerText = fname;
+    if (fname) {
+        const fnameElement = document.getElementById("user-fname");
+        const fnameDisplayElement = document.getElementById("user-fname-display");
+
+        if (fnameElement) fnameElement.innerText = fname; // แสดง fname ใน dropdown
+        if (fnameDisplayElement) fnameDisplayElement.innerText = fname; // แสดง fname ใน card-text
+    }
       if (username) document.getElementById("username-display").innerText = username;
       if (avatar) {
         document.getElementById("avatar").src = avatar;
@@ -52,20 +58,6 @@
     window.onload = loadUserData;
 
 
-// // ฟังก์ชันสำหรับการโหลดข้อมูลผู้ใช้จาก localStorage
-// window.onload = function() {
-//     const username = localStorage.getItem("username"); // ดึง username จาก localStorage
-//     const fname = localStorage.getItem("fname"); // ดึง fname จาก localStorage
-//     const avatar = localStorage.getItem("avatar"); // ดึง avatar จาก localStorage
-
-//     // อัปเดต fname ในส่วนที่ระบุ id="user-fname"
-//     if (fname) {
-//         const fnameElement = document.getElementById("user-fname");
-//         const fnameDisplayElement = document.getElementById("user-fname-display");
-
-//         if (fnameElement) fnameElement.innerText = fname; // แสดง fname ใน dropdown
-//         if (fnameDisplayElement) fnameDisplayElement.innerText = fname; // แสดง fname ใน card-text
-//     }
 
 //     // อัปเดต username
 //     if (username) {
