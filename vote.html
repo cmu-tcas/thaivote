@@ -76,6 +76,9 @@
                         </tbody>
                       </table>
                   </div>
+
+                  <button class="submit-btn" onclick="submitCheckbox()">Submit</button>
+
                 </div>
                 </div>
             </div>
@@ -110,5 +113,18 @@
       }
     });
   </script>
+    
+    <script>
+        function submitCheckbox() {
+            const ptpChecked = document.getElementById("ptp").checked;
+            const ffpChecked = document.getElementById("ffp").checked;
+
+            // คุณสามารถส่งข้อมูลนี้ไปยัง server หรือแสดงผลได้
+            console.log("PTP Checked:", ptpChecked);
+            console.log("FFP Checked:", ffpChecked);
+
+            alert(`PTP: ${ptpChecked ? 'Checked' : 'Unchecked'}\nFFP: ${ffpChecked ? 'Checked' : 'Unchecked'}`);
+        }
+    </script>
   </body>
 </html>
