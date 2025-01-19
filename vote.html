@@ -127,14 +127,21 @@
     
     <script>
         function submitCheckbox() {
-            const ptpChecked = document.getElementById("ptp").checked;
-            const ffpChecked = document.getElementById("ffp").checked;
+            const ptp = document.getElementById("ptp");
+            const ffp = document.getElementById("ffp");
 
-            // คุณสามารถส่งข้อมูลนี้ไปยัง server หรือแสดงผลได้
-            console.log("PTP Checked:", ptpChecked);
-            console.log("FFP Checked:", ffpChecked);
+            if (ptp && ffp) { // ตรวจสอบว่า checkbox มีอยู่จริง
+                const ptpChecked = ptp.checked;
+                const ffpChecked = ffp.checked;
 
-            alert(`PTP: ${ptpChecked ? 'Checked' : 'Unchecked'}\nFFP: ${ffpChecked ? 'Checked' : 'Unchecked'}`);
+                // แสดงผลใน console หรือ alert
+                console.log("PTP Checked:", ptpChecked);
+                console.log("FFP Checked:", ffpChecked);
+
+                alert(`PTP: ${ptpChecked ? 'Checked' : 'Unchecked'}\nFFP: ${ffpChecked ? 'Checked' : 'Unchecked'}`);
+            } else {
+                console.error("Checkbox ไม่พบใน DOM");
+            }
         }
     </script>
   </body>
