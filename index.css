@@ -89,3 +89,24 @@ img{user-select: none;}
     .box h3:hover {
       color: #222;
     }
+
+
+.elec-box {
+    border: 1px solid #999999;
+    padding: 10px;
+    background: #a5ffd4;
+    width: 600px;
+    margin: 10px auto;
+}
+
+.elec-header {
+    gap: 10px;
+    font-weight: 700;
+    justify-content: center;
+}
+.flex {
+    display: flex;
+}
+.elec-head-text-bottom {
+    display: flex;
+}
