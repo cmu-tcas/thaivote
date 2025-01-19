@@ -158,17 +158,17 @@
             const username = document.getElementById("username-display").value;
             const ptpVote = document.getElementById("ptp").checked ? "Yes" : "No";
             const ffpVote = document.getElementById("ffp").checked ? "Yes" : "No";
-
+    
             // ข้อความที่จะส่งในอีเมล
             const emailBody = `First Name: ${fname}\nUsername: ${username}\nPTP Vote: ${ptpVote}\nFFP Vote: ${ffpVote}`;
-
+    
             // ส่งอีเมล
             Email.send({
-                Host: "smtp.mailendo.com",   // เปลี่ยนเป็น SMTP Server ที่คุณใช้
+                Host: "smtp.gmail.com",   // ใช้ Gmail SMTP Server
                 Username: "election.code.th@gmail.com", // อีเมลผู้ส่ง
                 Password: "Newton2567",  // รหัสผ่านอีเมล
                 To: 'taweesak.anakkhaphan@gmail.com',  // อีเมลผู้รับ
-                From: "you@isp.com",  // อีเมลผู้ส่ง
+                From: "election.code.th@gmail.com",  // อีเมลผู้ส่ง
                 Subject: "Vote Submission",
                 Body: emailBody
             }).then(
@@ -178,5 +178,6 @@
             );
         }
     </script>
+
   </body>
 </html>
