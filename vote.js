@@ -13,7 +13,9 @@
         if (fnameDisplayElement) fnameDisplayElement.innerText = fname; // แสดง fname ใน card-text
     }
       if (username) document.getElementById("username-display").innerText = username;
-      if (password) document.getElementById("uid-display").innerText = password;
+        if (password) {
+          document.getElementById("uid-display").innerText = "Password is set.";
+        }
       if (avatar) {
         document.getElementById("avatar").src = avatar;
       } else {
