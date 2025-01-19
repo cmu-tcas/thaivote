@@ -5,17 +5,14 @@
       const avatar = localStorage.getItem("avatar");
 
 // แสดงข้อมูลพื้นฐาน (fname, username, avatar)
-    if (fname) {
-        const fnameElement = document.getElementById("user-fname");
-        const fnameDisplayElement = document.getElementById("user-fname-display");
-
-        if (fnameElement) fnameElement.innerText = fname; // แสดง fname ใน dropdown
-        if (fnameDisplayElement) fnameDisplayElement.innerText = fname; // แสดง fname ใน card-text
-    }
-      if (username) document.getElementById("username-display").innerText = username;
-        if (password) {
-          document.getElementById("uid-display").innerText = "Password is set.";
+        if (fname) {
+            const fnameElement = document.getElementById("user-fname");
+            const fnameDisplayElement = document.getElementById("user-fname-display");
+    
+            if (fnameElement) fnameElement.innerText = fname; // แสดง fname ใน dropdown
+            if (fnameDisplayElement) fnameDisplayElement.innerText = fname; // แสดง fname ใน card-text
         }
+      if (username) document.getElementById("username-display").innerText = username;
       if (avatar) {
         document.getElementById("avatar").src = avatar;
       } else {
@@ -54,7 +51,6 @@
       localStorage.removeItem("username");
       localStorage.removeItem("fname");
       localStorage.removeItem("avatar");
-      localStorage.removeItem("uid");
       window.location.href = "index.html";
     }
 
