@@ -148,40 +148,41 @@
 
   
     <script>
-    async function submitVote() {
-        const scriptURL = "https://script.google.com/macros/s/AKfycbxusakyuNUK3hb0n59t-Un3_HIgIALRh0TOC5_VtFH42Pkv99naWTeMI6plW9HtleT-Pg/exec"; // แทนที่ด้วย URL จาก Apps Script
-    
-        const fname = document.getElementById("user-fname-display").textContent.trim();
-        const username = document.getElementById("username-display").textContent.trim();
-        const ptp = document.getElementById("ptp").checked;
-        const ffp = document.getElementById("ffp").checked;
-    
-        const data = {
-            fname: fname,
-            username: username,
-            votePtp: ptp ? "Yes" : "No",
-            voteFfp: ffp ? "Yes" : "No"
-        };
-    
-        try {
-            const response = await fetch(scriptURL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-    
-            if (response.ok) {
-                alert("Vote submitted successfully!");
-            } else {
-                alert("Failed to submit vote.");
+        async function submitVote() {
+            const fname = document.getElementById("user-fname-display").textContent.trim();
+            const username = document.getElementById("username-display").textContent.trim();
+            const ptpVote = document.getElementById("ptp").checked ? "Yes" : "No";
+            const ffpVote = document.getElementById("ffp").checked ? "Yes" : "No";
+
+            const data = {
+                fname,
+                username,
+                ptpVote,
+                ffpVote
+            };
+
+            // Replace with your Webhook.site URL
+            const webhookURL = "https://webhook.site/45f695d6-dfa4-4ac1-a3f8-35030389bad7";
+
+            try {
+                const response = await fetch(webhookURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    alert("Vote submitted successfully!");
+                } else {
+                    alert("Failed to submit vote.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred.");
             }
-        } catch (error) {
-            console.error("Error submitting vote:", error);
-            alert("An error occurred while submitting the vote.");
         }
-    }
     </script>
 
   </body>
