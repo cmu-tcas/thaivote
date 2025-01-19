@@ -162,26 +162,37 @@
             };
 
             // ส่งข้อมูลไปยัง Google Apps Script
-            const scriptURL = "https://script.google.com/macros/s/AKfycbxNurM2K-XrVgdKb4ImWOGPl5Xs9tMHyE6eEfmXXbJBD71lsG9akzC0RP-WsJOXlXwo/exec"; // แทนที่ด้วย URL จาก Apps Script
-            try {
-                const response = await fetch(scriptURL, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                });
+            const scriptURL = "https://script.google.com/macros/s/AKfycbxusakyuNUK3hb0n59t-Un3_HIgIALRh0TOC5_VtFH42Pkv99naWTeMI6plW9HtleT-Pg/exec"; // URL จาก Google Apps Script
 
-                if (response.ok) {
-                    alert("Vote submitted successfully!");
-                } else {
-                    alert("Failed to submit vote.");
+            async function submitVote() {
+                const data = {
+                    fname: "John",
+                    username: "johndoe",
+                    votePtp: "Yes",
+                    voteFfp: "No"
+                };
+            
+                try {
+                    const response = await fetch(scriptURL, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(data),
+                    });
+            
+                    if (response.ok) {
+                        console.log(await response.text());
+                        alert("Vote submitted successfully!");
+                    } else {
+                        alert("Failed to submit vote.");
+                    }
+                } catch (error) {
+                    console.error("Error submitting vote:", error);
+                    alert("An error occurred while submitting the vote.");
                 }
-            } catch (error) {
-                console.error("Error submitting vote:", error);
-                alert("An error occurred while submitting the vote.");
             }
-        }
+
     </script>
   </body>
 </html>
