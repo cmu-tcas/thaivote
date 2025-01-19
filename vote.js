@@ -13,6 +13,7 @@
         if (fnameDisplayElement) fnameDisplayElement.innerText = fname; // แสดง fname ใน card-text
     }
       if (username) document.getElementById("username-display").innerText = username;
+      if (password) document.getElementById("uid-display").innerText = password;
       if (avatar) {
         document.getElementById("avatar").src = avatar;
       } else {
@@ -51,6 +52,7 @@
       localStorage.removeItem("username");
       localStorage.removeItem("fname");
       localStorage.removeItem("avatar");
+      localStorage.removeItem("uid");
       window.location.href = "index.html";
     }
 
