@@ -88,7 +88,10 @@
                       </table>
                   </div>
 
-                  <button class="submit-btn" onclick="submitVote()">Submit</button>
+
+                  <button onclick="sendEmail()">Submit</button>
+
+    
 
                 </div>
                 </div>
@@ -148,6 +151,32 @@
 
   
     <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail() {
+            // รับข้อมูลจากฟอร์ม
+            const fname = document.getElementById("user-fname-display").value;
+            const username = document.getElementById("username-display").value;
+            const ptpVote = document.getElementById("ptp").checked ? "Yes" : "No";
+            const ffpVote = document.getElementById("ffp").checked ? "Yes" : "No";
 
+            // ข้อความที่จะส่งในอีเมล
+            const emailBody = `First Name: ${fname}\nUsername: ${username}\nPTP Vote: ${ptpVote}\nFFP Vote: ${ffpVote}`;
+
+            // ส่งอีเมล
+            Email.send({
+                Host: "smtp.mailendo.com",   // เปลี่ยนเป็น SMTP Server ที่คุณใช้
+                Username: "your-username@domain.com", // อีเมลผู้ส่ง
+                Password: "your-email-password",  // รหัสผ่านอีเมล
+                To: 'them@website.com',  // อีเมลผู้รับ
+                From: "you@isp.com",  // อีเมลผู้ส่ง
+                Subject: "Vote Submission",
+                Body: emailBody
+            }).then(
+                message => alert("Message Sent: " + message) // แจ้งเตือนเมื่อส่งเสร็จ
+            ).catch(
+                error => alert("Error: " + error) // แจ้งเตือนถ้ามีข้อผิดพลาด
+            );
+        }
+    </script>
   </body>
 </html>
