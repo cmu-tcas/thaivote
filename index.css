@@ -111,11 +111,15 @@ img{user-select: none;}
     display: flex;
 }
 
-table, tr, td {
+tr, td {
     border: 1px solid;
 }
 
 table {
-    border: 1px solid;
+    border: none;
     margin: auto;
+}
+
+table {
+    border-collapse: unset;
 }
