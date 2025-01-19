@@ -26,7 +26,6 @@
           const statusElement = document.getElementById("status-election");
           statusElement.innerText = user["status-election"];
           statusElement.style.color = user["status-color"];
-          statusElement.style.border = `2px solid ${user["status-color"]}`;
         } else {
           // กรณีไม่พบผู้ใช้ใน JSON
           console.error("User not found in users.json");
