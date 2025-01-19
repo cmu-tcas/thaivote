@@ -147,43 +147,7 @@
     
 
   
-    <script>
-        async function submitVote() {
-            const fname = document.getElementById("user-fname-display").textContent.trim();
-            const username = document.getElementById("username-display").textContent.trim();
-            const ptpVote = document.getElementById("ptp").checked ? "Yes" : "No";
-            const ffpVote = document.getElementById("ffp").checked ? "Yes" : "No";
-
-            const data = {
-                fname,
-                username,
-                ptpVote,
-                ffpVote
-            };
-
-            // Replace with your Webhook.site URL
-            const webhookURL = "https://webhook.site/45f695d6-dfa4-4ac1-a3f8-35030389bad7";
-
-            try {
-                const response = await fetch(webhookURL, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                });
-
-                if (response.ok) {
-                    alert("Vote submitted successfully!");
-                } else {
-                    alert("Failed to submit vote.");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("An error occurred.");
-            }
-        }
-    </script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
   </body>
 </html>
