@@ -49,7 +49,7 @@ img{user-select: none;}
 }
 
 @media (max-width: 992px) {
-  .col-3{display: none;}
+  .col-3{display: none!important;}
   
   .col-9 {
       width: 100%!important;
