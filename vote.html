@@ -146,53 +146,43 @@
     </script> -->
     
 
+  
     <script>
-        async function submitVote() {
-            // ดึงข้อมูลจาก HTML
-            const fname = document.getElementById("user-fname-display").textContent.trim();
-            const username = document.getElementById("username-display").textContent.trim();
-            const ptp = document.getElementById("ptp").checked;
-            const ffp = document.getElementById("ffp").checked;
-
-            const data = {
-                fname: fname,
-                username: username,
-                votePtp: ptp ? "Yes" : "No",
-                voteFfp: ffp ? "Yes" : "No"
-            };
-
-            // ส่งข้อมูลไปยัง Google Apps Script
-            const scriptURL = "https://script.google.com/macros/s/AKfycbxusakyuNUK3hb0n59t-Un3_HIgIALRh0TOC5_VtFH42Pkv99naWTeMI6plW9HtleT-Pg/exec"; // URL จาก Google Apps Script
-
-            async function submitVote() {
-                const data = {
-                    fname: "John",
-                    username: "johndoe",
-                    votePtp: "Yes",
-                    voteFfp: "No"
-                };
-            
-                try {
-                    const response = await fetch(scriptURL, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(data),
-                    });
-            
-                    if (response.ok) {
-                        console.log(await response.text());
-                        alert("Vote submitted successfully!");
-                    } else {
-                        alert("Failed to submit vote.");
-                    }
-                } catch (error) {
-                    console.error("Error submitting vote:", error);
-                    alert("An error occurred while submitting the vote.");
-                }
+    async function submitVote() {
+        const scriptURL = "https://script.google.com/macros/s/AKfycbxusakyuNUK3hb0n59t-Un3_HIgIALRh0TOC5_VtFH42Pkv99naWTeMI6plW9HtleT-Pg/exec"; // แทนที่ด้วย URL จาก Apps Script
+    
+        const fname = document.getElementById("user-fname-display").textContent.trim();
+        const username = document.getElementById("username-display").textContent.trim();
+        const ptp = document.getElementById("ptp").checked;
+        const ffp = document.getElementById("ffp").checked;
+    
+        const data = {
+            fname: fname,
+            username: username,
+            votePtp: ptp ? "Yes" : "No",
+            voteFfp: ffp ? "Yes" : "No"
+        };
+    
+        try {
+            const response = await fetch(scriptURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+    
+            if (response.ok) {
+                alert("Vote submitted successfully!");
+            } else {
+                alert("Failed to submit vote.");
             }
-
+        } catch (error) {
+            console.error("Error submitting vote:", error);
+            alert("An error occurred while submitting the vote.");
+        }
+    }
     </script>
+
   </body>
 </html>
