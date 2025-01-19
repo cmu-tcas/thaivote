@@ -26,6 +26,12 @@ body {
 
 img{user-select: none;}
 
+@media (min-width: 576px) {
+    .container, .container-sm {
+         max-width: auto !important; 
+    }
+}
+
 .card {
     float: right;
     display: flex;
