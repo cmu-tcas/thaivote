@@ -3,12 +3,16 @@
         "fname": "นายวิเลิศ ภูริวัชระ",
         "username": "ipstudio",
         "password": "1201060701440061462",
-        "avatar": "logo.png"
+        "avatar": "logo.png",
+        "status-election": "ท่านมีสิทธิเลือกตั้งสมาชิกสภาผู้แทนราษฎร",
+        "status-color": "green"
     },
     {
         "fname": "นายวิเลิศ ภูริวัชร",
         "username": "kmitl",
         "password": "12369874",
-        "avatar": "logo.png"
+        "avatar": "logo.png",
+        "status-election": "ท่านมีสิทธิเลือกตั้งสมาชิกสภาผู้แทนราษฎร",
+        "status-color": "green"
     }
 ]
