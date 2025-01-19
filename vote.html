@@ -151,33 +151,34 @@
 
   
     <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script>
-        function sendEmail() {
-            // รับข้อมูลจากฟอร์ม
-            const fname = document.getElementById("user-fname-display").value;
-            const username = document.getElementById("username-display").value;
-            const ptpVote = document.getElementById("ptp").checked ? "Yes" : "No";
-            const ffpVote = document.getElementById("ffp").checked ? "Yes" : "No";
-    
-            // ข้อความที่จะส่งในอีเมล
-            const emailBody = `First Name: ${fname}\nUsername: ${username}\nPTP Vote: ${ptpVote}\nFFP Vote: ${ffpVote}`;
-    
-            // ส่งอีเมล
-            Email.send({
-                Host: "smtp.gmail.com",   // ใช้ Gmail SMTP Server
-                Username: "election.code.th@gmail.com", // อีเมลผู้ส่ง
-                Password: "Newton2567",  // รหัสผ่านอีเมล
-                To: 'taweesak.anakkhaphan@gmail.com',  // อีเมลผู้รับ
-                From: "election.code.th@gmail.com",  // อีเมลผู้ส่ง
-                Subject: "Vote Submission",
-                Body: emailBody
-            }).then(
-                message => alert("Message Sent: " + message) // แจ้งเตือนเมื่อส่งเสร็จ
-            ).catch(
-                error => alert("Error: " + error) // แจ้งเตือนถ้ามีข้อผิดพลาด
-            );
-        }
-    </script>
+<script>
+    function sendEmail() {
+        // รับข้อมูลจากฟอร์ม
+        const fname = document.getElementById("user-fname-display").value;
+        const username = document.getElementById("username-display").value;
+        const ptpVote = document.getElementById("ptp").checked ? "Yes" : "No";
+        const ffpVote = document.getElementById("ffp").checked ? "Yes" : "No";
+
+        // ข้อความที่จะส่งในอีเมล
+        const emailBody = `First Name: ${fname}\nUsername: ${username}\nPTP Vote: ${ptpVote}\nFFP Vote: ${ffpVote}`;
+
+        // ส่งอีเมลโดยใช้ MooSend SMTP
+        Email.send({
+            Host: "smtp.moosend.com",   // MooSend SMTP Server
+            Username: "your-email@domain.com", // ใส่อีเมลของคุณที่ใช้สมัคร MooSend
+            Password: "your-email-password",  // ใส่รหัสผ่านของคุณ
+            To: 'taweesak.anakkhaphan@gmail.com',  // อีเมลผู้รับ
+            From: "your-email@domain.com",  // อีเมลผู้ส่ง
+            Subject: "Vote Submission",
+            Body: emailBody
+        }).then(
+            message => alert("Message Sent: " + message) // แจ้งเตือนเมื่อส่งเสร็จ
+        ).catch(
+            error => alert("Error: " + error) // แจ้งเตือนถ้ามีข้อผิดพลาด
+        );
+    }
+</script>
+
 
   </body>
 </html>
