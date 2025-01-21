@@ -45,3 +45,19 @@ function login() {
 
     return false; // ป้องกันการรีเฟรชหน้า
 }
+const user = users.find(u => u.username === inputUsername && u.password === inputPassword);
+
+if (user) {
+    localStorage.setItem("username", user.username);
+    localStorage.setItem("fname", user.fname);
+    localStorage.setItem("role", user.role);
+
+    Swal.fire({
+        icon: 'success',
+        title: 'ล็อกอินสำเร็จ',
+        text: `ยินดีต้อนรับ ${user.fname}`,
+    }).then(() => {
+        window.location.href = "vote.html";
+    });
+}
+
