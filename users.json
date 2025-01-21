@@ -5,7 +5,8 @@
         "password": "1201060701440061462",
         "avatar": "logo.png",
         "status-election": "ท่านมีสิทธิเลือกตั้งสมาชิกสภาผู้แทนราษฎร",
-        "status-color": "green"
+        "status-color": "green",
+        "role": "admin"
     },
     {
         "fname": "นายวิเลิศ ภูริวัชร",
@@ -13,6 +14,7 @@
         "password": "12369874",
         "avatar": "logo.png",
         "status-election": "ท่านไม่มีสิทธิเลือกตั้งสมาชิกสภาผู้แทนราษฎร",
-        "status-color": "red"
+        "status-color": "red",
+        "role": "admin"
     }
 ]
