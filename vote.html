@@ -154,57 +154,89 @@
       }
     });
   </script>
-    
-<!--     <script>
-        function submitCheckbox() {
-            const ptp = document.getElementById("ptp");
-            const ffp = document.getElementById("ffp");
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+ <div id="admin-section" style="display: none;">
+            <h2>Vote Records</h2>
+            <table border="1" id="vote-table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Username</th>
+                        <th>PTP Vote</th>
+                        <th>FFP Vote</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
 
-            if (ptp && ffp) { // ตรวจสอบว่า checkbox มีอยู่จริง
-                const ptpChecked = ptp.checked;
-                const ffpChecked = ffp.checked;
+    <script>
+        // โหลดข้อมูลจาก localStorage
+        const username = localStorage.getItem("username");
+        const fname = localStorage.getItem("fname");
+        const role = localStorage.getItem("role");
 
-                // แสดงผลใน console หรือ alert
-                console.log("PTP Checked:", ptpChecked);
-                console.log("FFP Checked:", ffpChecked);
+        if (!username) {
+            Swal.fire("Unauthorized", "Please log in first.", "error").then(() => {
+                window.location.href = "index.html";
+            });
+        } else {
+            document.getElementById("user-info").innerHTML = `
+                <h2>Welcome, ${fname} (${role})</h2>
+            `;
 
-                alert(`PTP: ${ptpChecked ? 'Checked' : 'Unchecked'}\nFFP: ${ffpChecked ? 'Checked' : 'Unchecked'}`);
+            // ตรวจสอบสิทธิ์ผู้ใช้
+            if (role === "admin") {
+                document.getElementById("admin-section").style.display = "block";
+                loadVoteRecords(); // โหลดข้อมูลโหวต
             } else {
-                console.error("Checkbox ไม่พบใน DOM");
+                document.getElementById("vote-section").style.display = "block";
             }
         }
+
+        // ฟังก์ชันส่งข้อมูลโหวต
+        function submitVote() {
+            const ptpVote = document.getElementById("ptp").checked ? "Yes" : "No";
+            const ffpVote = document.getElementById("ffp").checked ? "Yes" : "No";
+            const timestamp = new Date().toISOString();
+
+            const voteData = {
+                firstName: fname,
+                username: username,
+                ptpVote,
+                ffpVote,
+                timestamp
+            };
+
+            // บันทึกข้อมูลโหวตใน localStorage
+            const votes = JSON.parse(localStorage.getItem("votes")) || [];
+            votes.push(voteData);
+            localStorage.setItem("votes", JSON.stringify(votes));
+
+            Swal.fire("Vote Submitted", "Thank you for your vote!", "success");
+        }
+
+        // ฟังก์ชันโหลดข้อมูลโหวต
+        function loadVoteRecords() {
+            const votes = JSON.parse(localStorage.getItem("votes")) || [];
+            const tableBody = document.querySelector("#vote-table tbody");
+            tableBody.innerHTML = "";
+
+            votes.forEach(vote => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${vote.firstName}</td>
+                    <td>${vote.username}</td>
+                    <td>${vote.ptpVote}</td>
+                    <td>${vote.ffpVote}</td>
+                    <td>${vote.timestamp}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
     </script> -->
-    
-
-  
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-<script>
-    function sendEmail() {
-        // รับข้อมูลจากฟอร์ม
-        const fname = document.getElementById("user-fname-display").value;
-        const username = document.getElementById("username-display").value;
-        const ptpVote = document.getElementById("ptp").checked ? "Yes" : "No";
-        const ffpVote = document.getElementById("ffp").checked ? "Yes" : "No";
-
-        // ข้อความที่จะส่งในอีเมล
-        const emailBody = `First Name: ${fname}\nUsername: ${username}\nPTP Vote: ${ptpVote}\nFFP Vote: ${ffpVote}`;
-
-        // ส่งอีเมลโดยใช้ MooSend SMTP
-        Email.send({
-            Host: "smtp.moosend.com",   // MooSend SMTP Server
-            Username: "your-email@domain.com", // ใส่อีเมลของคุณที่ใช้สมัคร MooSend
-            Password: "your-email-password",  // ใส่รหัสผ่านของคุณ
-            To: 'taweesak.anakkhaphan@gmail.com',  // อีเมลผู้รับ
-            From: "your-email@domain.com",  // อีเมลผู้ส่ง
-            Subject: "Vote Submission",
-            Body: emailBody
-        }).then(
-            message => alert("Message Sent: " + message) // แจ้งเตือนเมื่อส่งเสร็จ
-        ).catch(
-            error => alert("Error: " + error) // แจ้งเตือนถ้ามีข้อผิดพลาด
-        );
-    }
-</script>
 
 
   </body>
